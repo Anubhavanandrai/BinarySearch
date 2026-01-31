@@ -1,0 +1,38 @@
+class FirstOccurence {
+
+    public int first_occurrence_binary(int arr[], int target) {
+        int left = 0;
+        int right = arr.length - 1;
+        int result = -1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+
+            if (arr[mid] == target) {
+                result = mid;        
+                right = mid - 1;     
+            } 
+            else if (arr[mid] < target) {
+                left = mid + 1;
+            } 
+            else {
+                right = mid - 1;
+            }
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        int sorted_array[] = {1, 2, 3, 4, 4, 5, 6, 7};
+        int element_to_find = 4;
+
+        FirstOccurence obj = new FirstOccurence();
+        int index = obj.first_occurrence_binary(sorted_array, element_to_find);
+
+        if (index != -1) {
+            System.out.println("The first occurrence of " + element_to_find + " is at index " + index);
+        } else {
+            System.out.println(element_to_find + " was not found in the array.");
+        }
+    }
+}
